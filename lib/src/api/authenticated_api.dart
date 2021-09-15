@@ -8,8 +8,8 @@ import 'package:http/http.dart' as http;
 
 import 'api.dart';
 
-Map<String, String> getAuthHeaders(Login login) => {
-      ...headers[login.platform]!,
+Map<String, String> getAuthHeaders(Login login, [Platform? platform]) => {
+      ...headers[platform ?? login.platform]!,
       'authorization': 'Bearer ${login.accessToken.token}',
       'x-child-id': '${login.user.id}',
     };
@@ -22,7 +22,7 @@ Future<TimeTableResponse> getTimeTable(
   final res = await http.get(
     Uri.parse(
         '$eAsUrl/m/timetable/weekly?from=${from.getDateString()}&to=${to.getDateString()}'),
-    headers: getAuthHeaders(login),
+    headers: getAuthHeaders(login, Platform.web),
   );
 
   final json = jsonDecode(res.body);

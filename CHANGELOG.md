@@ -1,3 +1,7 @@
+## 0.0.4
+
+- Timetable requests with x-client-platform: web
+
 ## 0.0.3
 
 - JWT hotfix

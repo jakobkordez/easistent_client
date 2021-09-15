@@ -14,7 +14,8 @@ class JWToken {
   late final String? exp;
 
   JWToken(String token) {
-    final payload = jsonDecode(utf8.decode(base64.decode(token.split('.')[1])));
+    final payloadString = base64.normalize(token.split('.')[1]);
+    final payload = jsonDecode(utf8.decode(base64.decode(payloadString)));
     userId = payload['userId'];
     exp = payload['exp'];
   }

@@ -1,3 +1,7 @@
+## 0.0.3
+
+- JWT hotfix
+
 ## 0.0.2
 
 - Pubspec changes

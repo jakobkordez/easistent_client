@@ -1,3 +1,5 @@
+# easistent_client
+
 An eAsistent client Flutter package
 
 ## Usage
@@ -19,3 +21,7 @@ if (login.accessToken.isExpired())
 // Get a timetable
 final timetable = await client.getTimeTable(login, DateTime.now());
 ```
+
+## Shout-out
+
+A big shout-out to [siggsy](https://github.com/siggsy) for helping me understand the API.

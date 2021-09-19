@@ -1,3 +1,8 @@
+## 0.1.1
+
+- **REVERTS 0.0.5 BREAKING**: EAsClient.getTimeTable won't return null
+- **BREAKING**: Time properies to singular (hours, minutes -> hour, minute)
+
 ## 0.0.5
 
 - **BREAKING**: EAsClient.getTimeTable can return null

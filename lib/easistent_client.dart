@@ -40,7 +40,7 @@ class EAsClient {
 
   void clearCache() => _cache.clear();
 
-  Future<TimeTable?> getTimeTable(
+  Future<TimeTable> getTimeTable(
     Login login,
     DateTime date, [
     bool clearCache = false,
@@ -48,10 +48,8 @@ class EAsClient {
     final cacheKey = date.extractDateWith().millisecondsSinceEpoch;
     if (!clearCache && _cache.containsKey(cacheKey)) return _cache[cacheKey]!;
 
-    final weekStart =
-        DateTime(date.year, date.month, date.day - date.weekday + 1);
-    final weekEnd =
-        DateTime(date.year, date.month, date.day - date.weekday + 7);
+    final weekStart = date.extractDateWith(day: date.day - date.weekday + 1);
+    final weekEnd = date.extractDateWith(day: date.day - date.weekday + 7);
 
     final timetableRes = await auth_api.getTimeTable(weekStart, weekEnd, login);
     final timetable = TimeTableAdapter.from(timetableRes);
@@ -65,6 +63,15 @@ class EAsClient {
       );
     }
 
-    return _cache[cacheKey];
+    for (int i = 0; i < 7; ++i) {
+      _cache.putIfAbsent(
+        weekStart
+            .extractDateWith(day: weekStart.day + i)
+            .millisecondsSinceEpoch,
+        () => TimeTable([], [], []),
+      );
+    }
+
+    return _cache[cacheKey]!;
   }
 }

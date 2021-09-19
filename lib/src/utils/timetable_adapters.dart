@@ -21,12 +21,12 @@ extension SchoolHourEventAdapter on SchoolHour {
   ) =>
       SchoolHourEvent(
         res.time.date.extractDateWith(
-          schoolHours[res.time.fromId]!.timeFrom.hours,
-          schoolHours[res.time.fromId]!.timeFrom.minutes,
+          hour: schoolHours[res.time.fromId]!.timeFrom.hour,
+          minute: schoolHours[res.time.fromId]!.timeFrom.minute,
         ),
         res.time.date.extractDateWith(
-          schoolHours[res.time.toId]!.timeTo.hours,
-          schoolHours[res.time.toId]!.timeTo.minutes,
+          hour: schoolHours[res.time.toId]!.timeTo.hour,
+          minute: schoolHours[res.time.toId]!.timeTo.minute,
         ),
         _hexToColor(res.color),
         res.subject.name,
@@ -49,12 +49,12 @@ extension EventAdapter on Event {
     return Event(
       res.name,
       res.date.extractDateWith(
-        timeFrom.hours,
-        timeFrom.minutes,
+        hour: timeFrom.hour,
+        minute: timeFrom.minute,
       ),
       res.date.extractDateWith(
-        timeTo.hours,
-        timeTo.minutes,
+        hour: timeTo.hour,
+        minute: timeTo.minute,
       ),
       res.location.name,
     );

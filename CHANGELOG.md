@@ -1,3 +1,8 @@
+## 0.0.5
+
+- **BREAKING**: EAsClient.getTimeTable can return null
+- Fix EAsClient.getTimeTable
+
 ## 0.0.4
 
 - Timetable requests with x-client-platform: web

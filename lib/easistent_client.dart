@@ -40,7 +40,7 @@ class EAsClient {
 
   void clearCache() => _cache.clear();
 
-  Future<TimeTable> getTimeTable(
+  Future<TimeTable?> getTimeTable(
     Login login,
     DateTime date, [
     bool clearCache = false,
@@ -65,6 +65,6 @@ class EAsClient {
       );
     }
 
-    return _cache[cacheKey]!;
+    return _cache[cacheKey];
   }
 }

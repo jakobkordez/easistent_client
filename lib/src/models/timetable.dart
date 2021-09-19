@@ -1,15 +1,15 @@
 import 'dart:ui';
 
 class Time {
-  final int minutes;
-  final int hours;
+  final int minute;
+  final int hour;
 
-  Time([this.hours = 0, this.minutes = 0]);
+  Time([this.hour = 0, this.minute = 0]);
 
   Time.parse(String source)
       : assert(source.split(':').length == 2),
-        hours = int.parse(source.split(':').first),
-        minutes = int.parse(source.split(':').last);
+        hour = int.parse(source.split(':').first),
+        minute = int.parse(source.split(':').last);
 }
 
 class SchoolHour {

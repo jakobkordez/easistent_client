@@ -1,3 +1,12 @@
+## 0.2.2
+
+- Fix exports
+- Fix README
+
+## 0.2.1
+
+- Add special hour type as enum
+
 ## 0.1.1
 
 - **REVERTS 0.0.5 BREAKING**: EAsClient.getTimeTable won't return null

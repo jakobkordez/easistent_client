@@ -10,9 +10,11 @@ import 'src/models/timetable.dart';
 import 'src/api/api.dart' as api;
 import 'src/api/authenticated_api.dart' as auth_api;
 
-export 'src/models/timetable.dart';
+export 'src/models/enums/platform.dart';
+export 'src/models/enums/special_hour_type.dart';
 export 'src/models/errors.dart';
 export 'src/models/login.dart';
+export 'src/models/timetable.dart';
 
 class EAsClient {
   final Map<int, TimeTable> _cache = {};

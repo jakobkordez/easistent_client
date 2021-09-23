@@ -3,7 +3,9 @@ library easistent_client;
 import 'package:easistent_client/src/utils/datetime_util.dart';
 import 'package:easistent_client/src/utils/timetable_adapters.dart';
 
+import 'src/models/enums/platform.dart';
 import 'src/models/login.dart';
+import 'src/models/responses/refresh_token.dart';
 import 'src/models/timetable.dart';
 import 'src/api/api.dart' as api;
 import 'src/api/authenticated_api.dart' as auth_api;

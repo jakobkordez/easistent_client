@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:easistent_client/src/models/enums/special_hour_type.dart';
+
 class Time {
   final int minute;
   final int hour;
@@ -27,7 +29,7 @@ class SchoolHourEvent {
   final DateTime timeTo;
   final Color color;
   final String subject;
-  final String? specialHourType; // TODO types as enum
+  final SpecialHourType? specialHourType;
   final List<String> departments;
   final String classroom;
   final List<String> teachers;
@@ -52,7 +54,7 @@ class Event {
   final String name;
   final DateTime timeFrom;
   final DateTime timeTo;
-  // int eventType
+  // TODO int eventType
   final String? location;
 
   Event(this.name, this.timeFrom, this.timeTo, this.location);
@@ -61,7 +63,7 @@ class Event {
 class AllDayEvent {
   final String name;
   final DateTime date;
-  // int eventType
+  // TODO int eventType
   final String? location;
 
   AllDayEvent(this.name, this.date, this.location);

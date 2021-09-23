@@ -1,43 +1,5 @@
-import 'dart:convert';
-
-enum Platform { web, mobile }
-
-extension PlatformSerializer on Platform {
-  static const _all = [Platform.web, Platform.mobile];
-
-  static Platform fromInt(int value) => _all[value];
-  int asInt() => _all.indexOf(this);
-}
-
-class JWToken {
-  late final String userId;
-  late final String? exp;
-
-  JWToken(String token) {
-    final payloadString = base64.normalize(token.split('.')[1]);
-    final payload = jsonDecode(utf8.decode(base64.decode(payloadString)));
-    userId = payload['userId'];
-    exp = payload['exp'];
-  }
-}
-
-class AccessToken {
-  final String token;
-  final DateTime _exp;
-
-  AccessToken(this.token) : _exp = DateTime.parse(JWToken(token).exp!);
-
-  AccessToken.expired()
-      : token = '',
-        _exp = DateTime.now().subtract(const Duration(days: 1));
-
-  AccessToken.fromJson(Map<String, dynamic> json)
-      : token = json['token'],
-        _exp = DateTime.parse(JWToken(json['token']).exp!);
-
-  bool isExpired() =>
-      _exp.isBefore(DateTime.now().subtract(const Duration(seconds: 10)));
-}
+import 'enums/platform.dart';
+import 'responses/refresh_token.dart';
 
 class User {
   final int id;
@@ -70,8 +32,7 @@ class Login {
   Login(this.platform, this.accessToken, this.refreshToken, this.user);
 
   Login.fromJson(Map<String, dynamic> json, [Platform? platform])
-      : platform =
-            platform ?? PlatformSerializer.fromInt(json['platform'] ?? 0),
+      : platform = platform ?? Platform.values[json['platform']],
         accessToken = AccessToken.fromJson(json['access_token']),
         refreshToken = json['refresh_token'],
         user = User.fromJson(json['user']);
@@ -83,7 +44,7 @@ class Login {
         user = User(int.parse(JWToken(token).userId));
 
   Map<String, dynamic> toJson() => {
-        'platform': platform.asInt(),
+        'platform': platform.index,
         'access_token': accessToken.token,
         'refresh_token': refreshToken,
         'user': user,

@@ -1,8 +1,9 @@
 import 'dart:convert';
 
+import 'package:easistent_client/src/models/enums/platform.dart';
 import 'package:easistent_client/src/models/errors.dart';
 import 'package:easistent_client/src/models/login.dart';
-import 'package:easistent_client/src/models/timetable_response.dart';
+import 'package:easistent_client/src/models/responses/timetable.dart';
 import 'package:easistent_client/src/utils/datetime_util.dart';
 import 'package:http/http.dart' as http;
 

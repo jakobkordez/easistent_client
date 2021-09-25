@@ -32,8 +32,10 @@ extension SchoolHourEventAdapter on SchoolHour {
         ),
         _hexToColor(res.color),
         res.subject.name,
-        SpecialHourType.values
-            .firstWhere((e) => describeEnum(e) == res.hourSpecialType),
+        SpecialHourType.values.cast<SpecialHourType?>().firstWhere(
+              (e) => describeEnum(e!) == res.hourSpecialType,
+              orElse: () => null,
+            ),
         List.unmodifiable(res.departments.map((e) => e.name)),
         res.classroom.name,
         List.unmodifiable(res.teachers.map((e) => e.name)),

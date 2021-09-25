@@ -1,3 +1,7 @@
+## 0.2.3
+
+- Fix `SpecialHourType` while parsing `SchoolHourEvent`
+
 ## 0.2.2
 
 - Fix exports

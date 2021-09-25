@@ -32,7 +32,7 @@ class Login {
   Login(this.platform, this.accessToken, this.refreshToken, this.user);
 
   Login.fromJson(Map<String, dynamic> json, [Platform? platform])
-      : platform = platform ?? Platform.values[json['platform']],
+      : platform = platform ?? Platform.values[json['platform'] ?? 0],
         accessToken = AccessToken.fromJson(json['access_token']),
         refreshToken = json['refresh_token'],
         user = User.fromJson(json['user']);

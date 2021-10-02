@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:collection/collection.dart';
 import 'package:easistent_client/src/models/enums/special_hour_type.dart';
 import 'package:easistent_client/src/models/responses/timetable.dart';
 import 'package:easistent_client/src/models/timetable.dart';
@@ -32,10 +33,9 @@ extension SchoolHourEventAdapter on SchoolHour {
         ),
         _hexToColor(res.color),
         res.subject.name,
-        SpecialHourType.values.cast<SpecialHourType?>().firstWhere(
-              (e) => describeEnum(e!) == res.hourSpecialType,
-              orElse: () => null,
-            ),
+        SpecialHourType.values.firstWhereOrNull(
+          (e) => describeEnum(e) == res.hourSpecialType,
+        ),
         List.unmodifiable(res.departments.map((e) => e.name)),
         res.classroom.name,
         List.unmodifiable(res.teachers.map((e) => e.name)),

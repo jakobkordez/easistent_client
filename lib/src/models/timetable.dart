@@ -2,12 +2,14 @@ import 'dart:ui';
 
 import 'package:easistent_client/src/models/enums/special_hour_type.dart';
 
+/// Basic class for [hour] and [minute]
 class Time {
   final int minute;
   final int hour;
 
   Time([this.hour = 0, this.minute = 0]);
 
+  /// Parses time formatted `HH:mm` from [source]
   Time.parse(String source)
       : assert(source.split(':').length == 2),
         hour = int.parse(source.split(':').first),
@@ -69,11 +71,20 @@ class AllDayEvent {
   AllDayEvent(this.name, this.date, this.location);
 }
 
+/// Main timetable class
 class TimeTable {
+  /// Unmodifiable sorted list of hour events
   final List<SchoolHourEvent> schoolHourEvents;
+
+  /// Unmodifiable sorted list of events
   final List<Event> events;
+
+  /// Unmodifiable sorted list of all day events
   final List<AllDayEvent> allDayEvents;
 
+  /// Default [TimeTable] constructor
+  ///
+  /// Sorts all events
   TimeTable(
     Iterable<SchoolHourEvent> schoolHourEvents,
     Iterable<Event> events,

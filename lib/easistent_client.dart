@@ -16,24 +16,36 @@ export 'src/models/errors.dart';
 export 'src/models/login.dart';
 export 'src/models/timetable.dart';
 
+/// Main API client
+///
+/// Caches data
+///
+/// Login options:
+/// - Use [EAsClient.userLogin] for logging in with username and password, or
+/// - Use [EAsClient.tokenLogin] for logging in with a refresh token
+///
+/// Use [EAsClient.refreshToken] to refresh access token
+///
 class EAsClient {
   final Map<int, TimeTable> _cache = {};
 
+  /// Login with [username] and [password]
   static Future<Login> userLogin(String username, String password) async {
     return api.apiLogin(username, password, Platform.mobile);
   }
 
+  /// Login with a refresh token as [token]
   static Future<Login> tokenLogin(String token) async {
-    final jwt = JWToken(token);
     final tokens = await api.refreshToken(token);
     return Login(
       Platform.mobile,
       tokens.accessToken,
       tokens.refreshToken,
-      User(int.parse(jwt.userId)),
+      User(int.parse(JWToken(token).userId)),
     );
   }
 
+  /// Refresh a login state (access token)
   static Future<Login> refreshToken(Login login) async {
     final tokens = await api.refreshToken(login.refreshToken);
     return login.copyWith(
@@ -42,8 +54,12 @@ class EAsClient {
     );
   }
 
+  /// Clears all cached data
   void clearCache() => _cache.clear();
 
+  /// Get timetable for [date] with [login]
+  ///
+  /// To get new data (not cached) set [clearCache] to `true`
   Future<TimeTable> getTimeTable(
     Login login,
     DateTime date, [

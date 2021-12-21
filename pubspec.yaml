@@ -1,6 +1,6 @@
 name: easistent_client
 description: An eAsistent client package
-version: 0.2.3
+version: 0.2.4
 repository: https://github.com/jakobkordez/easistent_client
 
 environment:
@@ -8,6 +8,7 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  collection: ^1.15.0
   flutter:
     sdk: flutter
 

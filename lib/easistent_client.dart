@@ -31,10 +31,11 @@ class EAsClient {
 
   /// Login with [username] and [password]
   static Future<Login> userLogin(String username, String password) async {
-    return api.apiLogin(username, password, Platform.mobile);
+    return api.ajaxLogin(username, password);
   }
 
   /// Login with a refresh token as [token]
+  @Deprecated('Cannot test')
   static Future<Login> tokenLogin(String token) async {
     final tokens = await api.refreshToken(token);
     return Login(
@@ -46,6 +47,7 @@ class EAsClient {
   }
 
   /// Refresh a login state (access token)
+  @Deprecated('Cannot test')
   static Future<Login> refreshToken(Login login) async {
     final tokens = await api.refreshToken(login.refreshToken);
     return login.copyWith(

@@ -1,5 +1,4 @@
 import 'package:easistent_client/easistent_client.dart';
-import 'package:easistent_client/src/models/enums/platform.dart';
 import 'package:easistent_client/src/models/responses/refresh_token.dart';
 import 'package:flutter_test/flutter_test.dart';
 

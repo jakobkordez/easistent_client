@@ -1,3 +1,7 @@
+## 0.2.4
+
+- Revert remove ajaxLogin
+
 ## 0.2.3
 
 - Fix `SpecialHourType` while parsing `SchoolHourEvent`
